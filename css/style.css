@@ -1,5 +1,3 @@
-/* modified from https://www.viget.com/articles/angled-edges-with-css-masks-and-transforms/ */
-/* Accepts an angle in deg from the horizontal, a pseudo element reference (before, after, or both), an additional height that will be added to the element */
 * {
   scroll-behavior: smooth; }
 
@@ -47,50 +45,23 @@ section {
   position: absolute;
   z-index: 1;
   /*    height: 100vh;*/
-  background: #dabda3; }
+  background: #dabda3;
+  background-attachment: fixed;
+  border: 1px solid red;
+  opacity: .5; }
 
 section#one {
-  height: 70vh;
+  height: 1vh;
   left: 0;
   top: 0;
   width: 25%; }
-  section#one:after {
-    background: blue;
-    opacity: .25;
-    content: '';
-    display: block;
-    height: 50%;
-    position: absolute;
-    left: 0;
-    right: 0;
-    transform: skewY(-60deg);
-    z-index: -1;
-    -webkit-backface-visibility: hidden; }
-  section#one:after {
-    top: 100%;
-    transform-origin: top left; }
 
 section#two {
   display: none;
-  right: 0;
+  left: 25%;
   top: 0;
   width: 75%;
-  min-height: 1vh; }
-  section#two:after {
-    background: blue;
-    opacity: .25;
-    content: '';
-    display: block;
-    height: 50%;
-    position: absolute;
-    left: 0;
-    right: 0;
-    transform: skewY(30deg);
-    z-index: -1;
-    -webkit-backface-visibility: hidden; }
-  section#two:after {
-    top: 100%;
-    transform-origin: top right; }
+  min-height: 35.55%; }
 
 section#three {
   display: none;
@@ -103,21 +74,6 @@ section#four {
   bottom: 0;
   width: 25%;
   min-height: 1vh; }
-  section#four:before {
-    background: blue;
-    opacity: .25;
-    content: '';
-    display: block;
-    height: 50%;
-    position: absolute;
-    left: 0;
-    right: 0;
-    transform: skewY(-60deg);
-    z-index: -1;
-    -webkit-backface-visibility: hidden; }
-  section#four:before {
-    bottom: 0;
-    transform-origin: bottom left; }
 
 section#five {
   display: none;
@@ -125,21 +81,6 @@ section#five {
   bottom: 0;
   width: 75%;
   min-height: 1vh; }
-  section#five:before {
-    background: blue;
-    opacity: .25;
-    content: '';
-    display: block;
-    height: 50%;
-    position: absolute;
-    left: 0;
-    right: 0;
-    transform: skewY(60deg);
-    z-index: -1;
-    -webkit-backface-visibility: hidden; }
-  section#five:before {
-    bottom: 0;
-    transform-origin: bottom right; }
 
 section#six {
   display: none;
@@ -149,24 +90,6 @@ section#six {
   top: 50%;
   transform: translate(-50%, -50%);
   background: green; }
-  section#six:before, section#six:after {
-    background: blue;
-    opacity: .25;
-    content: '';
-    display: block;
-    height: 50%;
-    position: absolute;
-    left: 0;
-    right: 0;
-    transform: skewY(60deg);
-    z-index: -1;
-    -webkit-backface-visibility: hidden; }
-  section#six:before, section#six:after {
-    bottom: 0;
-    transform-origin: bottom right; }
-  section#six:before, section#six:after {
-    top: 100%;
-    transform-origin: top right; }
 
 section h2 ~ * {
   display: none; }

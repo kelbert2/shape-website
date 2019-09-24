@@ -1,0 +1,61 @@
+/* modified from https://www.viget.com/articles/angled-edges-with-css-masks-and-transforms/ */
+/* Accepts an angle in deg from the horizontal, a pseudo element reference (before, after, or both), an additional height that will be added to the element */
+/* only way to calculate a safe height to ensure no odd corners showing would be height = tan($angle) * width, but that's something for javascript */
+@mixin angle-edge($angle: 30deg, $pseudo: 'after', $height: 50%, $background: blue) {
+    @if $pseudo=='before'or $pseudo=='after'or $pseudo=='both' {
+        //        position: relative;
+        //        z-index: 1;
+
+        $selector: if($pseudo=='both', '&:before,&:after', '&:#{$pseudo}');
+
+        #{$selector} {
+            background: $background;
+            background-attachment: fixed;
+            opacity: .25;
+
+            content: '';
+            display: block;
+            height: $height;
+
+            position: absolute;
+            left: 0;
+            right: 0;
+
+            transform: skewY($angle);
+
+            z-index: -1;
+
+            -webkit-backface-visibility: hidden; // for Chrome Windows
+        }
+
+        @if $pseudo=='before'or $pseudo=='both' {
+            #{$selector} {
+                // &:before
+                bottom: 100%;
+
+                @if $angle<0 {
+                    transform-origin: bottom left;
+                }
+
+                @else {
+                    transform-origin: bottom right;
+                }
+            }
+        }
+
+        @if $pseudo=='after'or $pseudo=='both' {
+            #{$selector} {
+                top: 100%;
+
+                @if $angle<0 {
+                    // transform-origin is the corner that will stay in place
+                    transform-origin: top left;
+                }
+
+                @else {
+                    transform-origin: top right;
+                }
+            }
+        }
+    }
+}
