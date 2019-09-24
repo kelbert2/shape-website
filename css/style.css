@@ -1,0 +1,79 @@
+* {
+  scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif; }
+
+header {
+  /*    display: none;*/
+    /*
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    background: lime;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+*/
+  background: lime;
+  position: absolute;
+  width: 50%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  background: url("http://lorempixel.com/400/200/nature") no-repeat;
+  background-size: cover;
+  background-position: center; }
+
+nav {
+  display: none; }
+
+/* Would either need to reorder the dom so sections come before nav, or just implement scroll spy and target/header nav relationship in javascript */
+/* section#one:hover ~ nav a[href="one"] */
+nav a:hover {
+  color: blue; }
+
+section {
+  position: absolute;
+  width: 25%;
+  height: 70vh;
+  /*    height: 100vh;*/
+  background: yellow;
+  opacity: .1; }
+
+section#one {
+  left: 0;
+  top: 0; }
+
+section#two {
+  left: 30%;
+  top: 0;
+  clip-path: polygon(0 0); }
+
+section#three {
+  transform: rotate(-60deg); }
+
+section#four {
+  right: 0;
+  bottom: 0; }
+
+section#five {
+  transform: rotate(-120deg); }
+
+section#six {
+  transform: rotate(-60deg); }
+
+section h2 ~ * {
+  display: none; }
+
+section h2::before {
+  content: ''; }
+
+/*# sourceMappingURL=style.css.map */
