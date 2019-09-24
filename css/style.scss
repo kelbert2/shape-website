@@ -1,3 +1,64 @@
+/* modified from https://www.viget.com/articles/angled-edges-with-css-masks-and-transforms/ */
+/* Accepts an angle in deg from the horizontal, a pseudo element reference (before, after, or both), an additional height that will be added to the element */
+@mixin angle-edge($angle: 30deg, $pseudo: 'after', $height: 50%, $background: inherit) {
+    @if $pseudo=='before'or $pseudo=='after'or $pseudo=='both' {
+        //        position: relative;
+        //        z-index: 1;
+
+        $selector: if($pseudo=='both', '&:before,&:after', '&:#{$pseudo}');
+
+        #{$selector} {
+            //            background: $background;
+            background: blue;
+            opacity: .25;
+
+            content: '';
+            display: block;
+            height: $height;
+
+            position: absolute;
+            left: 0;
+            right: 0;
+
+            transform: skewY($angle);
+
+            z-index: -1;
+
+            -webkit-backface-visibility: hidden; // for Chrome Windows
+        }
+
+        @if $pseudo=='before'or $pseudo=='both' {
+            #{$selector} {
+                // &:before
+                bottom: 0;
+
+                @if $angle<0 {
+                    transform-origin: bottom left;
+                }
+
+                @else {
+                    transform-origin: bottom right;
+                }
+            }
+        }
+
+        @if $pseudo=='after'or $pseudo=='both' {
+            #{$selector} {
+                top: 100%;
+
+                @if $angle<0 {
+                    // transform-origin is the corner that will stay in place
+                    transform-origin: top left;
+                }
+
+                @else {
+                    transform-origin: top right;
+                }
+            }
+        }
+    }
+}
+
 * {
     scroll-behavior: smooth;
 }
@@ -5,7 +66,6 @@
 body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     font-family: sans-serif;
 }
 
@@ -26,11 +86,14 @@ header {
     background: lime;
     position: absolute;
     width: 50%;
+    height: 60%;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
     color: white;
+
+    z-index: -1;
 
     background: url("http://lorempixel.com/400/200/nature") no-repeat;
     background-size: cover;
@@ -48,52 +111,72 @@ nav a:hover {
     color: blue;
 }
 
-//@for $i from 2 through 6 {
-//    section:nth-of-type(#{$i}) {
-//        transform: rotate(60deg * ($i - 1));
-//    }
-//}
-
 section {
     position: absolute;
-    width: 25%;
-    height: 70vh;
+    z-index: 1;
     /*    height: 100vh;*/
-    background: yellow;
-    opacity: .1;
-    //    left: 0;
-    //    top: 0;
-    //    transform-origin: center center;
+    background: #dabda3;
 }
 
 section#one {
+    //    float: left;
+    height: 70vh;
     left: 0;
     top: 0;
+    width: 25%;
+    @include angle-edge(-60deg);
 }
 
 section#two {
-    left: 30%;
+    display: none;
+    //    float: right;
+    right: 0;
     top: 0;
-    clip-path: polygon(0 0, ) //    transform: rotate(60deg);
+    width: 75%;
+    min-height: 1vh;
+    @include angle-edge();
+    //    transform: rotate(60deg);
 }
 
 section#three {
-    //    right: 30%;
+    display: none;
+    right: 0;
+    width: 50%;
     //    top: -25%;
-    transform: rotate(-60deg);
+    //    transform: rotate(-60deg);
 }
 
 section#four {
+    display: none;
     right: 0;
     bottom: 0;
+    width: 25%;
+    min-height: 1vh;
+    @include angle-edge(-60deg, before);
 }
 
 section#five {
-    transform: rotate(-120deg);
+    display: none;
+
+    left: 0;
+    bottom: 0;
+    width: 75%;
+    min-height: 1vh;
+    @include angle-edge(60deg, before);
 }
 
 section#six {
-    transform: rotate(-60deg);
+    display: none;
+
+    left: 0;
+    width: 50%;
+
+    height: 1vh;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    //    transform: rotate(-60deg);
+    background: green;
+    @include angle-edge(60deg, both);
 }
 
 section h2 ~ * {

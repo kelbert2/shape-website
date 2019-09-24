@@ -1,10 +1,11 @@
+/* modified from https://www.viget.com/articles/angled-edges-with-css-masks-and-transforms/ */
+/* Accepts an angle in deg from the horizontal, a pseudo element reference (before, after, or both), an additional height that will be added to the element */
 * {
   scroll-behavior: smooth; }
 
 body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
   font-family: sans-serif; }
 
 header {
@@ -23,11 +24,13 @@ header {
   background: lime;
   position: absolute;
   width: 50%;
+  height: 60%;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
   color: white;
+  z-index: -1;
   background: url("http://lorempixel.com/400/200/nature") no-repeat;
   background-size: cover;
   background-position: center; }
@@ -42,33 +45,128 @@ nav a:hover {
 
 section {
   position: absolute;
-  width: 25%;
-  height: 70vh;
+  z-index: 1;
   /*    height: 100vh;*/
-  background: yellow;
-  opacity: .1; }
+  background: #dabda3; }
 
 section#one {
+  height: 70vh;
   left: 0;
-  top: 0; }
+  top: 0;
+  width: 25%; }
+  section#one:after {
+    background: blue;
+    opacity: .25;
+    content: '';
+    display: block;
+    height: 50%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    transform: skewY(-60deg);
+    z-index: -1;
+    -webkit-backface-visibility: hidden; }
+  section#one:after {
+    top: 100%;
+    transform-origin: top left; }
 
 section#two {
-  left: 30%;
+  display: none;
+  right: 0;
   top: 0;
-  clip-path: polygon(0 0); }
+  width: 75%;
+  min-height: 1vh; }
+  section#two:after {
+    background: blue;
+    opacity: .25;
+    content: '';
+    display: block;
+    height: 50%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    transform: skewY(30deg);
+    z-index: -1;
+    -webkit-backface-visibility: hidden; }
+  section#two:after {
+    top: 100%;
+    transform-origin: top right; }
 
 section#three {
-  transform: rotate(-60deg); }
+  display: none;
+  right: 0;
+  width: 50%; }
 
 section#four {
+  display: none;
   right: 0;
-  bottom: 0; }
+  bottom: 0;
+  width: 25%;
+  min-height: 1vh; }
+  section#four:before {
+    background: blue;
+    opacity: .25;
+    content: '';
+    display: block;
+    height: 50%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    transform: skewY(-60deg);
+    z-index: -1;
+    -webkit-backface-visibility: hidden; }
+  section#four:before {
+    bottom: 0;
+    transform-origin: bottom left; }
 
 section#five {
-  transform: rotate(-120deg); }
+  display: none;
+  left: 0;
+  bottom: 0;
+  width: 75%;
+  min-height: 1vh; }
+  section#five:before {
+    background: blue;
+    opacity: .25;
+    content: '';
+    display: block;
+    height: 50%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    transform: skewY(60deg);
+    z-index: -1;
+    -webkit-backface-visibility: hidden; }
+  section#five:before {
+    bottom: 0;
+    transform-origin: bottom right; }
 
 section#six {
-  transform: rotate(-60deg); }
+  display: none;
+  left: 0;
+  width: 50%;
+  height: 1vh;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: green; }
+  section#six:before, section#six:after {
+    background: blue;
+    opacity: .25;
+    content: '';
+    display: block;
+    height: 50%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    transform: skewY(60deg);
+    z-index: -1;
+    -webkit-backface-visibility: hidden; }
+  section#six:before, section#six:after {
+    bottom: 0;
+    transform-origin: bottom right; }
+  section#six:before, section#six:after {
+    top: 100%;
+    transform-origin: top right; }
 
 section h2 ~ * {
   display: none; }
