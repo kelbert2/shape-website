@@ -120,10 +120,20 @@ section#four h2 {
     margin: auto;
 }
 
+section#one h2 {
+    margin-right: 20px;
+    margin-bottom: var(--hex-side);
+}
+
 section#four {
     right: 0;
     bottom: 0;
     transform-origin: bottom left;
+}
+
+section#four h2 {
+    margin-left: 20px;
+    margin-top: var(--hex-side);
 }
 
 section#two {
@@ -138,6 +148,7 @@ section#two,
 section#five {
     /*    width: 75%;*/
     width: 100%;
+    /*    TODO: may change width */
     /*    height: calc(50vh - var(--hex-side) / 2);*/
     /*    height: calc(50vh - var(--hex-side));*/
     height: calc(100vh - var(--hex-side) * 2);
@@ -157,14 +168,15 @@ section#five h2 {
     /*    margin: auto 50%;*/
     margin: auto;
 
-    margin-top: 20%;
+    margin-top: calc(var(--hex-side) / 2);
 }
 
 section#two h2 {
     transform: skewY(30deg);
     /*    margin: 50% auto;*/
     margin: auto;
-    margin-top: 60%;
+    /*    TOOD: fix spacing on this section */
+    margin-top: calc(80% - var(--hex-side) / 2);
 
 }
 
@@ -177,7 +189,10 @@ section#three {
 }
 
 section#three h2 {
-    margin: 70% auto;
+    /*    margin: calc(50vh - var(--hex-side)) auto;*/
+    margin: auto;
+    /*    TODO: align this text to the bottom of the div */
+    margin-bottom: var(--hex-side);
 }
 
 section#six {
@@ -189,7 +204,11 @@ section#six {
 }
 
 section#six h2 {
-    margin: 90% auto auto auto;
+    /*    margin: 90% auto auto auto;*/
+    /*    margin: auto;*/
+    /*    TODO: align this h2 to the right */
+    margin-top: calc(var(--hex-side) * 1.75);
+    margin-right: 20px;
 }
 
 section h2 ~ * {
