@@ -13,6 +13,8 @@ html {
     /*            overflow: hidden;*/
 }
 
+/*TODO: add clipping for images and browsers that support it */
+
 div,
 header,
 section {
@@ -99,8 +101,41 @@ section {
     box-sizing: border-box;
     border: 2px solid white;
 
+    opacity: .1;
+
     color: white;
     overflow: hidden;
+    z-index: 1;
+}
+
+section::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(120deg, #eaee44, #33d0ff);
+    opacity: .7;
+    z-index: -1;
+
+    /*    @supports (mix-blend-mode: hue) {*/
+    /*    opacity: 1;*/
+    /*    mix-blend-mode: soft-light;*/
+    mix-blend-mode: hue;
+    /*    mix-blend-mode:multiply;*/
+
+    /*    mix-blend-mode: overlay;*/
+
+    /*
+    mix-blend-mode: color;
+    mix-blend-mode: hard-light;
+    mix-blend-mode: hue;
+*/
+    /*    }*/
+    transition: mix-blend-mode 1s;
+}
+
+section:hover::before {
+    /*    mix-blend-mode: multiply;*/
 }
 
 section::after {
@@ -108,7 +143,7 @@ section::after {
     width: 110%;
     height: 110%;
     /*    display: block;*/
-    z-index: -1;
+    z-index: -2;
 
     background-size: cover;
     position: absolute;
@@ -130,24 +165,23 @@ section#center {
 }
 
 /* TODO: what if made straight, along with 6 and four and just some crossing lines below*/
-section#center *,
-section#center::after {
-    /*    transform: skewY(-30deg);*/
-}
 
-section#center h2,
-section#center div {
+
+section#center * {
     margin: auto;
 }
 
 section#center::after {
     /*    position: absolute;*/
-    top: -5%;
-    left: 0;
+    top: -10%;
+    left: -5%;
+
+    background: var(--main) url("../assets/nature-forest-trees-fog.jpeg") no-repeat;
+    background: var(--main) url("../assets/clouds-cloudy-cold-daylight.jpg") no-repeat;
 
     background: var(--main) url("../assets/black-forest-clouds-cloudy-cold.jpg") no-repeat;
-    /*    background-position: left bottom;*/
-    /*    background: url("http://lorempixel.com/400/200/nature") no-repeat;*/
+
+
     background-size: cover;
     /*    background-position: center;*/
     /*    background-attachment: fixed;*/
@@ -184,10 +218,16 @@ section#one h2 {
 
 section#one::after {
     position: absolute;
-    bottom: -10%;
+    top: 0;
     right: 0;
-    background-position: bottom right;
-    background: var(--main) url("../assets/news-california-ElkRiverTrail.jpg") no-repeat;
+    /*    background-position: bottom right;*/
+
+    background: var(--main) url("../assets/forest-2033331_960_720.jpg") no-repeat;
+
+    background: var(--main) url("../assets/forest-1768654_960_720.jpg") no-repeat;
+
+    background: var(--main) url("../assets/1200px-Poland_Common_Forest_Hd_Wallpaper_(30152045).jpeg") no-repeat;
+
     background-size: cover;
 }
 
@@ -205,9 +245,20 @@ section#four h2 {
 
 section#four::after {
     /*    background-position: top right;*/
-    /*    top: -10%;*/
+    bottom: 0;
+    right: 0;
+    background: var(--main) url("../assets/moss-green-dashing-the-background.jpg") no-repeat;
+
+    background: var(--main) url("../assets/tree-wood-woodland-forest.jpg") no-repeat;
+
+    /*    flip vertically? */
+    background: var(--main) url("../assets/forest-mushrooms.jpg") no-repeat;
+
     background: var(--main) url("../assets/flowers.jpg") no-repeat;
+
     background-size: cover;
+
+    /*    check if need to put background-size cover to after */
 }
 
 section#two,
@@ -257,7 +308,24 @@ section#two::after {
     /*    background-position: bottom center;*/
     /*    bottom: -50%;*/
     /*    left: 0;*/
-    background: var(--main) url("../assets/deer-forest-wildlife-36041.jpg");
+
+
+    /*    probably switch this section with another */
+    background: var(--main) url("../assets/bird.jpg") no-repeat;
+
+    /*    would need to flip */
+    background: var(--main) url("../assets/brhlik-forestbird.jpg") no-repeat;
+
+    background: var(--main) url("../assets/Strix-varia-005.jpg") no-repeat;
+    /*    background: var(--main) url("../assets/deer-animal-tree-plant-wallpaper-preview.jpg") no-repeat;*/
+
+    background: var(--main) url("../assets/Sfdrw.jpg") no-repeat;
+    background: var(--main) url("../assets/deer-forest-wildlife-36041.jpg") no-repeat;
+
+
+    bottom: 5%;
+    right: 0;
+
     background-size: cover;
     transform-origin: top left;
 }
@@ -283,11 +351,37 @@ section#five h2 {
 }
 
 section#five::after {
-    background-size: cover;
+    /*    background-size: cover;*/
+
+
     /*    top: -40%;*/
     /*    left: 0;*/
     background: var(--main) url("../assets/forest-firs-green-background-nature-wallpaper-preview.jpg");
-    transform-origin: top right;
+    background: var(--main) url("../assets/forest_woodland_drone_view_aerial_view_green-1410057.jpg!d.jpg");
+    background: var(--main) url("../assets/stream-in-the-forest.jpg");
+    background: var(--main) url("../assets/pexels-photo-1174183.jpeg");
+
+    background: var(--main) url("../assets/moss-green-dashing-the-background.jpg");
+
+    background: var(--main) url("../assets/bird.jpg") no-repeat;
+
+
+    background: var(--main) url("../assets/deer-forest-wildlife-36041.jpg") no-repeat;
+    background: var(--main) url("../assets/Sfdrw.jpg") no-repeat;
+
+    transform-origin: bottom right;
+    /*        left: 0;*/
+
+    /*    top: -50%;*/
+    /*    bottom: 0;*/
+    /*    right: 0;*/
+    /*    TODO: if above a certain size, chrom cuts off */
+    /*    bottom: -15%;*/
+    right: -5%;
+    /*    background-position: center left;*/
+
+    background-size: cover;
+
 }
 
 section#three {
@@ -317,6 +411,9 @@ section#six {
     right: 50%;
     top: calc(50vh + var(--hex-side));
     transform-origin: top right;
+    opacity: 1;
+    /*    overflow: visible;*/
+    border: 1px solid black;
 }
 
 section#three h2,
@@ -337,9 +434,21 @@ section#three h2 {
 
 section#three::after {
     background-size: cover;
-    background: var(--main) url("../assets/pine-trees-reflect.jpg") no-repeat;
+
     transform-origin: bottom right;
     /*    background-size: cover;*/
+    background: var(--main) url("../assets/clouds-cloudy-cold-daylight.jpg") no-repeat;
+
+    background: var(--main) url("../assets/1200px-Poland_Common_Forest_Hd_Wallpaper_(30152045).jpeg") no-repeat;
+
+    background: var(--main) url("../assets/forest-1768654_960_720.jpg") no-repeat;
+
+    background: var(--main) url("../assets/brhlik-forestbird.jpg") no-repeat;
+
+    background: var(--main) url("../assets/forest-2033331_960_720.jpg") no-repeat;
+
+    background-position: bottom center;
+
 }
 
 section#six h2 {
@@ -357,9 +466,27 @@ section#six::after {
     bottom: 0;
     right: 0;
     background: var(--main) url("../assets/tree-wood-woodland-forest.jpg");
+
+    background: var(--main) url("../assets/Dark_Forest_2-1600.jpg") no-repeat;
+    background: var(--main) url("../assets/trail-2721814_1280.jpg") no-repeat;
+    background: var(--main) url("../assets/forest-mushrooms.jpg") no-repeat;
+    background: var(--main) url("../assets/forest_woodland_drone_view_aerial_view_green-1410057.jpg!d.jpg") no-repeat;
+
+    /*    right: 0;*/
+    /*        bottom: 10%;*/
+
+    transform-origin: bottom left;
+
+    background-position: center left;
     background-size: cover;
 }
 
 section h2 ~ * {
     display: none;
 }
+
+
+/* transform origin
+background position if larger than it takes to cover box
+
+*/

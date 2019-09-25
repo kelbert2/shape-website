@@ -1,0 +1,73 @@
+All images
+
+Cloudy
+
+background: var(--main) url("../assets/black-forest-clouds-cloudy-cold.jpg") no-repeat;
+
+background: var(--main) url("../assets/clouds-cloudy-cold-daylight.jpg") no-repeat;
+
+background: var(--main) url("../assets/nature-forest-trees-fog.jpeg") no-repeat;
+
+Forest
+
+background: var(--main) url("../assets/Dark_Forest_2-1600.jpg") no-repeat;
+
+background: var(--main) url("../assets/1200px-Poland_Common_Forest_Hd_Wallpaper_(30152045).jpeg") no-repeat;
+
+background: var(--main) url("../assets/forest-1768654_960_720.jpg") no-repeat;
+
+background: var(--main) url("../assets/forest-2033331_960_720.jpg") no-repeat;
+
+background: var(--main) url("../assets/stream-in-the-forest.jpg") no-repeat;
+
+Trail
+
+background: var(--main) url("../assets/nature-path-away-forest-hiking-wallpaper-preview.jpg") no-repeat;
+
+background: var(--main) url("../assets/news-california-ElkRiverTrail.jpg") no-repeat;
+
+background: var(--main) url("../assets/trail-2721814_1280.jpg") no-repeat;
+
+// great image
+
+Birds
+
+background: var(--main) url("../assets/bird.jpg") no-repeat;
+
+background: var(--main) url("../assets/brhlik-forestbird.jpg") no-repeat;
+
+background: var(--main) url("../assets/Strix-varia-005.jpg") no-repeat;
+
+
+Deer
+
+background: var(--main) url("../assets/deer-animal-tree-plant-wallpaper-preview.jpg") no-repeat;
+
+background: var(--main) url("../assets/deer-forest-wildlife-36041.jpg") no-repeat;
+
+background: var(--main) url("../assets/Sfdrw.jpg") no-repeat;
+
+
+Flora
+
+background: var(--main) url("../assets/flowers.jpg") no-repeat;
+
+background: var(--main) url("../assets/forest-mushrooms.jpg") no-repeat;
+// should use somewhere
+
+background: var(--main) url("../assets/moss-green-dashing-the-background.jpg") no-repeat;
+// should use with full color
+
+background: var(--main) url("../assets/tree-wood-woodland-forest.jpg") no-repeat;
+
+
+Forest from afar
+
+background: var(--main) url("../assets/forest_woodland_drone_view_aerial_view_green-1410057.jpg!d.jpg") no-repeat;
+
+background: var(--main) url("../assets/forest-firs-green-background-nature-wallpaper-preview.jpg") no-repeat;
+
+background: var(--main) url("../assets/pexels-photo-1174183.jpeg") no-repeat;
+
+background: var(--main) url("../assets/pine-trees-reflect.jpg") no-repeat;
+
