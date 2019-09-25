@@ -1,7 +1,8 @@
 :root {
-    --hex-width: 200px;
+    --hex-width: 150px;
     --sqrt-three: 1.732;
     --hex-side: calc(var(--hex-width) / var(--sqrt-three));
+    --main: green;
 }
 
 * {
@@ -9,13 +10,13 @@
 }
 
 html {
-    /*    overflow: hidden;*/
+    /*        overflow: hidden;*/
 }
 
 div,
 header,
 section {
-    background: rgba(218, 189, 163, .9);
+    /*    background: rgba(218, 189, 163, .9);*/
 }
 
 body {
@@ -24,6 +25,37 @@ body {
     font-family: sans-serif;
     height: 100vh;
     width: 100%;
+    border: 1px solid white;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    /*    font-family: 'Lexend Zetta', sans-serif;*/
+    /*    font-family: 'Gruppo', sans-serif;*/
+    /*    font-family: 'Manjari', sans-serif;*/
+
+    /*    font-family: 'Fredericka the Great', sans-serif;*/
+
+    /*    font-family: 'Flamenco', cursive;*/
+    font-family: 'Nixie One', cursive;
+    /*    font-family: 'Averia Serif Libre', cursive;*/
+    /*    font-family: 'Averia Libre', cursive;*/
+
+}
+
+h1,
+h2 {
+    font-size: 1.125em;
+}
+
+h1 a,
+h2 a {
+    text-decoration: none;
+    color: white;
 }
 
 header {
@@ -62,11 +94,12 @@ nav a:hover {
 
 section {
     position: absolute;
-
-    background-attachment: fixed;
     text-align: center;
     box-sizing: border-box;
     border: 2px solid white;
+
+    color: white;
+    overflow: hidden;
 }
 
 section#center {
@@ -78,7 +111,7 @@ section#center {
     top: 50%;
     transform: translate(-50%, -50%) skewY(30deg);
     transform-origin: center center;
-    color: white;
+
 }
 
 section#center *,
@@ -86,18 +119,34 @@ section#center::after {
     transform: skewY(-30deg);
 }
 
-section#center::after {
-    content: '';
-    width: 100%;
-    height: 100%;
-    display: block;
-    /*    position: absolute;*/
+section#center h2,
+section#center div {
+    margin: auto;
+}
 
+section::after {
+    content: '';
+    width: 110%;
+    height: 110%;
+    /*    display: block;*/
+    z-index: -1;
+
+    background-size: cover;
+    position: absolute;
+}
+
+section#center::after {
+    position: absolute;
+    top: -5%;
+    left: 0;
+
+    background: var(--main) url("../assets/black-forest-clouds-cloudy-cold.jpg") no-repeat;
+    /*    background-position: left bottom;*/
     /*    background: url("http://lorempixel.com/400/200/nature") no-repeat;*/
-    /*    background-size: cover;*/
-    background-position: center;
-    background-attachment: fixed;
-    background-size: 100% 100%;
+    background-size: cover;
+    /*    background-position: center;*/
+    /*    background-attachment: fixed;*/
+    /*    background-size: 100% 100%;*/
 }
 
 section#one {
@@ -115,7 +164,9 @@ section#four {
 }
 
 section#one h2,
-section#four h2 {
+section#one::after,
+section#four h2,
+section#four::after {
     transform: skewY(-30deg);
     margin: auto;
 }
@@ -123,6 +174,15 @@ section#four h2 {
 section#one h2 {
     margin-right: 20px;
     margin-bottom: var(--hex-side);
+}
+
+section#one::after {
+    position: absolute;
+    bottom: -10%;
+    right: 0;
+    background-position: bottom right;
+    background: var(--main) url("../assets/news-california-ElkRiverTrail.jpg") no-repeat;
+    background-size: cover;
 }
 
 section#four {
@@ -136,12 +196,11 @@ section#four h2 {
     margin-top: var(--hex-side);
 }
 
-section#two {
-    /*    left: calc(50% - var(--hex-width) / 2);*/
-    right: 0;
-    /*    left section width */
-    top: calc(-50vh + var(--hex-side));
-    /*    transform-origin: top center;*/
+section#four::after {
+    background-position: top right;
+    top: -10%;
+    background: var(--main) url("../assets/flowers.jpg") no-repeat;
+    background-size: cover;
 }
 
 section#two,
@@ -156,6 +215,14 @@ section#five {
     transform: skewY(-30deg);
 }
 
+section#two {
+    /*    left: calc(50% - var(--hex-width) / 2);*/
+    right: 0;
+    /*    left section width */
+    top: calc(-50vh + var(--hex-side));
+    /*    transform-origin: top center;*/
+}
+
 section#five {
     /*    right: calc(50% - var(--hex-width) / 2);*/
     left: 0;
@@ -163,29 +230,62 @@ section#five {
     /*    transform-origin: bottom center;*/
 }
 
-section#five h2 {
+section#five h2,
+section#five::after,
+section#two h2,
+section#two::after {
     transform: skewY(30deg);
-    /*    margin: auto 50%;*/
     margin: auto;
+}
+
+section#two h2 {
+    /*    transform: skewY(30deg);*/
+    /*    margin: 50% auto;*/
+    /*    margin: auto;*/
+    /*    TOOD: fix spacing on this section */
+    margin-top: calc(80% - var(--hex-side) / 2);
+
+}
+
+section#two::after {
+    /*    background-position: bottom center;*/
+    bottom: -50%;
+    left: 0;
+    background: var(--main) url("../assets/deer-forest-wildlife-36041.jpg");
+    background-size: cover;
+}
+
+section#five h2 {
+    /*    transform: skewY(30deg);*/
+    /*    margin: auto 50%;*/
+    /*    margin: auto;*/
 
     margin-top: calc(var(--hex-side) / 2);
 }
 
-section#two h2 {
-    transform: skewY(30deg);
-    /*    margin: 50% auto;*/
-    margin: auto;
-    /*    TOOD: fix spacing on this section */
-    margin-top: calc(80% - var(--hex-side) / 2);
+section#five::after {
+    background-size: cover;
+    opacity: .6;
+    top: -40%;
+    left: 0;
+    background: var(--main) url("../assets/forest-firs-green-background-nature-wallpaper-preview.jpg");
 
 }
 
 section#three {
     right: 0;
     top: 0;
+}
+
+section#three,
+section#six {
     height: calc(50vh + var(--hex-side));
     width: 50%;
-    border: 1px solid black;
+}
+
+section#six {
+    bottom: 0;
+    left: 0;
 }
 
 section#three h2 {
@@ -195,12 +295,11 @@ section#three h2 {
     margin-bottom: var(--hex-side);
 }
 
-section#six {
-    bottom: 0;
+section#three::after {
+    top: 0;
     left: 0;
-    width: 50%;
-    /*    height: 100vh;*/
-    height: calc(50vh + var(--hex-side));
+    background: var(--main) url("../assets/pine-trees-reflect.jpg");
+    /*    background-size: cover;*/
 }
 
 section#six h2 {
@@ -209,6 +308,13 @@ section#six h2 {
     /*    TODO: align this h2 to the right */
     margin-top: calc(var(--hex-side) * 1.75);
     margin-right: 20px;
+}
+
+section#six::after {
+    bottom: 0;
+    right: 0;
+    background: var(--main) url("../assets/tree-wood-woodland-forest.jpg");
+    background-size: cover;
 }
 
 section h2 ~ * {
