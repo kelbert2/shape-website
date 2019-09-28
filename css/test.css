@@ -3,8 +3,39 @@
     --sqrt-three: 1.732;
     --hex-side: calc(var(--hex-width) / var(--sqrt-three));
     --main: green;
+    /* https://colorpalette.org/tree-spruce-pine-family-color-palette-2/ */
+    --dark-green: #263E31;
+    --alt-dark-green: #1c412d;
+    --main-green: #2f5d4a;
+    --light-green: #4c826d;
+    --alt-light-green: #5ca77e;
+
+    --dark: #13211f;
+    --gray: #6c7476;
+    --light-gray: #c8d3d4;
+    --light: #e1e7e9;
+
+    --dark-blue: #284548;
+    --main-blue: #436767;
+    --light-blue: #85a39e;
+    --alt-light-blue: #b0c1c1;
+
+    --arrow-thickness: 2px;
+    --border: 1px solid white;
+    --header-height: 1.5em;
+
+    --gradient: linear-gradient(120deg, var(--dark-green), #7d370b, var(--light-blue));
+    --light-alpha: rgba(225, 231, 238, .5);
+    --light-min-alpha: rgba(225, 231, 238, .25);
+    --light-max-alpha: rgba(225, 231, 238, .75);
+    --dark-alpha: rgba(19, 33, 31, .5);
+    --dark-min-alpha: rgba(19, 33, 31, .25);
+    --dark-max-alpha: rgba(19, 33, 31, .75);
+
+
 }
 
+/*background-image: linear-gradient(120deg, #eaee44, #33d0ff);*/
 * {
     scroll-behavior: smooth;
 }
@@ -19,7 +50,6 @@ div,
 header,
 section {
     /*    background: rgba(218, 189, 163, .9);*/
-    display: grid;
 }
 
 body {
@@ -28,7 +58,7 @@ body {
     font-family: sans-serif;
     height: 100vh;
     width: 100%;
-    border: 1px solid white;
+    /*    border: 1px solid white;*/
     font-family: 'Montserrat', sans-serif;
     font-family: 'Open Sans', sans-serif;
 }
@@ -62,18 +92,22 @@ h2 a {
 }
 
 header {
-    display: none;
-    /*
+
     position: fixed;
     top: 0;
-    z-index: 1;
+    z-index: 100;
     width: 100%;
-    background: lime;
+    height: var(--header-height);
+    background: var(--dark-alpha);
+    border-bottom: var(--border);
 
     display: flex;
     align-items: center;
     justify-content: space-around;
-*/
+
+    background: inherit;
+
+    backdrop-filter: blur(3px);
 
     /*
     background: black;
@@ -84,6 +118,19 @@ header {
 
     /*    z-index: -1;*/
 }
+
+/*
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
+    filter: blur(10px);
+}
+*/
 
 nav {
     display: none;
@@ -96,16 +143,34 @@ nav a:hover {
 }
 
 section {
-    position: absolute;
+    display: none;
     text-align: center;
     box-sizing: border-box;
-    border: 2px solid white;
+    /*    border: 2px solid white;*/
+    width: 100%;
+    height: 100vh;
+    padding-top: var(--header-height);
 
-    opacity: .1;
+    /*    display: grid;*/
+}
 
-    color: white;
-    overflow: hidden;
-    z-index: 1;
+/*
+
+section:target::before {
+    content: '';
+    height: var(--header-height);
+
+    display: block;
+    margin: calc(-1 * var(--header-height)) 0 0;
+}
+*/
+
+section::after {
+    content: '';
+    width: 100%;
+    height: 100vh;
+    /*        display: block;*/
+    z-index: -2;
 }
 
 section::before {
@@ -113,140 +178,295 @@ section::before {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(120deg, #eaee44, #33d0ff);
+    background-image: var(--gradient);
     opacity: .7;
+    top: 0;
+    left: 0;
     z-index: -1;
 
     /*    @supports (mix-blend-mode: hue) {*/
     /*    opacity: 1;*/
-    /*    mix-blend-mode: soft-light;*/
-    mix-blend-mode: hue;
-    /*    mix-blend-mode:multiply;*/
+    /*        mix-blend-mode: soft-light;*/
+    /*    mix-blend-mode: hue;*/
 
-    /*    mix-blend-mode: overlay;*/
-
-    /*
-    mix-blend-mode: color;
-    mix-blend-mode: hard-light;
-    mix-blend-mode: hue;
-*/
-    /*    }*/
-    transition: mix-blend-mode 1s;
-}
-
-section:hover::before {
-    /*    mix-blend-mode: multiply;*/
-}
-
-section::after {
-    content: '';
-    width: 110%;
-    height: 110%;
-    /*    display: block;*/
-    z-index: -2;
-
-    background-size: cover;
-    position: absolute;
 }
 
 section#center {
-    width: calc(var(--hex-width) + 5%);
-    /*    width: calc(var(--hex-width) * 2);*/
-    /*    max-width: 100px;*/
-    height: calc(2 * var(--hex-side) + 5%);
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    /*    transform: translate(-50%, -50%) skewY(30deg);*/
-    /*    transform-origin: center center;*/
-    /*        display: grid;*/
-    z-index: -1;
-
+    position: relative;
+    z-index: 1;
+    background: var(--main);
+    color: var(--light);
 }
 
-/* TODO: what if made straight, along with 6 and four and just some crossing lines below*/
+section#center .search-bar {
+    display: inline-block;
+}
 
+.search-bar {
+    background: var(--light-min-alpha);
+    border-radius: 1em;
+    padding: 0 5px;
+    width: auto;
+    transition: all .5s;
+}
 
-section#center * {
-    margin: auto;
+.search-bar:hover {
+    background: var(--light-max-alpha);
 }
 
 section#center::after {
-    /*    position: absolute;*/
-    top: -10%;
-    left: -5%;
-
     background: var(--main) url("../assets/nature-forest-trees-fog.jpeg") no-repeat;
     background: var(--main) url("../assets/clouds-cloudy-cold-daylight.jpg") no-repeat;
 
     background: var(--main) url("../assets/black-forest-clouds-cloudy-cold.jpg") no-repeat;
 
-
     background-size: cover;
-    /*    background-position: center;*/
+
+    height: 30vh;
+    background-position: center left;
+    top: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
     /*    background-attachment: fixed;*/
     /*    background-size: 100% 100%;*/
 }
 
 section#one {
-    left: 0;
-    top: 0;
-    /*    transform-origin: top right;*/
+    position: relative;
+    display: block;
 }
 
-section#one,
-section#four {
-    height: calc(51vh + var(--hex-side) / 2);
-    width: calc(50% - var(--hex-width) / 2);
-    /*    transform: skewY(30deg);*/
+section#one div {
+    background: var(--dark-alpha);
+    margin: 20px;
+    padding: 20px;
     display: grid;
+    grid-template-columns: 50% 50%;
+    grid-gap: 5px;
 }
 
-section#one h2,
-section#one::after,
-section#four h2,
-section#four::after {
-    /*    transform: skewY(-30deg);*/
-    margin: auto;
+button {
+    margin: 5px;
+    padding: 5px;
+    background: none;
+    color: var(--light);
+    border: none;
+    transition: all .3s;
+    height: 2em;
+
+    transition: all .3s;
+    text-transform: uppercase;
+
+    font-family: "Varela Round";
+    font-size: .75em;
 }
 
-/* TODO: make margins percentages or minmax */
-section#one h2 {
-    margin-right: 20px;
-    margin-bottom: var(--hex-side);
+button:hover,
+button:focus {
+    letter-spacing: 1px;
+    box-shadow: 0px 5px 40px -10px var(--light-max-alpha);
+    transform: scale(1.05);
 }
 
-section#one::after {
+button:active {
+    transform: scale(.9);
+}
+
+/* Expand space between letters */
+/* Brings up and shadow fades */
+button.primary {
+    border: .5px solid var(--light);
+    background: var(--dark-min-alpha);
+}
+
+button.primary:hover {
+    border: 1px solid var(--light);
+}
+
+button.primary:hover,
+button.secondary:hover {
+
+    text-shadow: 0px 0px 6px var(--light-max-alpha);
+}
+
+button.secondary {
+    background: var(--light-alpha);
+    color: var(--dark);
+}
+
+button.secondary:hover {
+    background: var(--light-max-alpha);
+}
+
+/* Gradient to nothing */
+button.cancel:hover {}
+
+/* Pulse */
+button.submit {}
+
+button.download {}
+
+button.share {}
+
+/*hexagonal buttons*/
+button.add {}
+
+button.remove {}
+
+/*TODO: frosted */
+/* Small circle to full*/
+button.back {
+    color: var(--dark);
+
+    background: var(--light-alpha);
+
+    /*    margin: 0;*/
+}
+
+button.back,
+button.more {
+    vertical-align: middle;
+    padding: 0;
+    /*    TODO: if supports flexbox */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2em;
+
+    transition: all .3s;
+
+    position: relative;
+    overflow: hidden;
+}
+
+button.back::before,
+button.more::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
     position: absolute;
-    top: 0;
+
+    background-color: var(--light-max-alpha);
+
+    transform: scale(0, 1);
+    transform-origin: right top;
+    z-index: -1;
+
+    transition: transform .3s linear;
+}
+
+button.back:hover::before,
+button.more:hover::before {
+    transform: scale(1, 1);
+
+    transform-origin: left top;
+
+}
+
+button.back i,
+button.more i {
+    width: .75em;
+    height: .75em;
+    border-width: var(--arrow-thickness) 0 0 var(--arrow-thickness);
+    border-style: solid;
+
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    /*    color: #666;*/
+
+    box-sizing: border-box;
+}
+
+button.back i {
+    transform: rotate(-45deg);
+    transition: margin .3s;
+    margin: 0 1em 0 0;
+}
+
+button.more i {
+    transform: rotate(135deg);
+    margin: 0 0 0 1em;
+}
+
+button.back i::after,
+button.more i::after {
+    content: '';
+    /*    box-sizing: border-box;*/
+    /*    display: inline-block;*/
+
+
+    width: 1.25em;
+
+    height: var(--arrow-thickness);
+    position: absolute;
+    left: 0;
+    top: calc(-.75 * var(--arrow-thickness));
+
+    transform-origin: top left;
+    transform: rotate(45deg);
+
+    transition: width .3s;
+
+    /* IE might not support background, TODO: try with this */
+    /*
+    box-shadow: inset 0 0 0 32px;
     right: 0;
-    /*    background-position: bottom right;*/
+    top: -2px;
+    position: absolute;
+    height: var(--arrow-thickness);
+    
+    transform: rotate(-45deg);
+    width: 23px;
+    transform-origin: right top;
+*/
+}
+
+button.back i::after {
+    background: var(--dark);
+}
+
+button.more i::after {
+    background: var(--light);
+}
+
+button.back:hover i::after {
+    width: 1.75em;
+}
+
+button.back:hover i {
+    margin-right: 1.5em;
+}
+
+button.more {}
+
+
+/* download? */
+/* Share */
+/* add */
+/* remove */
+section#one::after {
+    display: block;
+
+    /*        background-position: bottom right;*/
 
     background: var(--main) url("../assets/forest-2033331_960_720.jpg") no-repeat;
 
     background: var(--main) url("../assets/forest-1768654_960_720.jpg") no-repeat;
 
     background: var(--main) url("../assets/1200px-Poland_Common_Forest_Hd_Wallpaper_(30152045).jpeg") no-repeat;
+    position: absolute;
+    bottom: 0;
+
 
     background-size: cover;
 }
 
-section#four {
-    right: 0;
-    bottom: 0;
-    /*    transform-origin: bottom left;*/
-}
-
-section#four h2 {
-    /*    margin-left: 20px;*/
-    margin-top: var(--hex-side);
-    margin-left: 20px;
-}
-
 section#four::after {
     /*    background-position: top right;*/
-    bottom: 0;
-    right: 0;
+
     background: var(--main) url("../assets/moss-green-dashing-the-background.jpg") no-repeat;
 
     background: var(--main) url("../assets/tree-wood-woodland-forest.jpg") no-repeat;
@@ -261,48 +481,6 @@ section#four::after {
     /*    check if need to put background-size cover to after */
 }
 
-section#two,
-section#five {
-    /*    width: 75%;*/
-    width: calc(50% + var(--hex-width) / 2);
-    /*    TODO: may change width */
-    /*    height: calc(50vh - var(--hex-side) / 2);*/
-    /*    height: calc(50vh - var(--hex-side));*/
-    height: calc(50vh - var(--hex-side) / 2);
-    /*    transform-origin: center center;*/
-    transform: skewY(-30deg);
-}
-
-section#two {
-    /*    left: calc(50% - var(--hex-width) / 2);*/
-    right: 0;
-    /*    left section width */
-    /*    top: calc(-50vh + var(--hex-side));*/
-    top: 0;
-    transform-origin: top left;
-    /*    transform-origin: top center;*/
-}
-
-section#five h2,
-section#five::after,
-section#two h2,
-section#two::after {
-    transform: skewY(30deg);
-    margin: auto;
-}
-
-section#two h2 {
-    /*    transform: skewY(30deg);*/
-    /*    margin: 50% auto;*/
-    /*    margin: auto;*/
-    /*    TOOD: fix spacing on this section */
-    /*    margin-top: calc(80% - var(--hex-side) / 2);*/
-    margin-bottom: var(--hex-side);
-    margin-left: 20px;
-    /*    margin: auto auto var(--hex-side) 20px;*/
-    /*    transform-origin: top left;*/
-
-}
 
 section#two::after {
     /*    background-position: bottom center;*/
@@ -321,41 +499,11 @@ section#two::after {
 
     background: var(--main) url("../assets/Sfdrw.jpg") no-repeat;
     background: var(--main) url("../assets/deer-forest-wildlife-36041.jpg") no-repeat;
-
-
-    bottom: 5%;
-    right: 0;
-
     background-size: cover;
-    transform-origin: top left;
-}
-
-section#five {
-    /*    right: calc(50% - var(--hex-width) / 2);*/
-    left: 0;
-    /*    bottom: calc(-50vh + var(--hex-side));*/
-    bottom: 0;
-    transform-origin: bottom right;
-    /*    transform-origin: bottom center;*/
-}
-
-section#five h2 {
-    /*    transform: skewY(30deg);*/
-    /*    margin: auto 50%;*/
-    /*    margin: auto;*/
-
-    /*    margin-top: calc(var(--hex-side) / 2);*/
-    margin-top: var(--hex-side);
-    margin-right: 20px;
-
 }
 
 section#five::after {
-    /*    background-size: cover;*/
 
-
-    /*    top: -40%;*/
-    /*    left: 0;*/
     background: var(--main) url("../assets/forest-firs-green-background-nature-wallpaper-preview.jpg");
     background: var(--main) url("../assets/forest_woodland_drone_view_aerial_view_green-1410057.jpg!d.jpg");
     background: var(--main) url("../assets/stream-in-the-forest.jpg");
@@ -369,74 +517,13 @@ section#five::after {
     background: var(--main) url("../assets/deer-forest-wildlife-36041.jpg") no-repeat;
     background: var(--main) url("../assets/Sfdrw.jpg") no-repeat;
 
-    transform-origin: bottom right;
-    /*        left: 0;*/
-
-    /*    top: -50%;*/
-    /*    bottom: 0;*/
-    /*    right: 0;*/
-    /*    TODO: if above a certain size, chrom cuts off */
-    /*    bottom: -15%;*/
-    right: -5%;
     /*    background-position: center left;*/
 
     background-size: cover;
 
 }
 
-section#three {
-    /*
-    right: 0;
-    top: 0;
-*/
-    left: 50%;
-    bottom: calc(50vh + var(--hex-side));
-    transform-origin: bottom left;
-}
-
-section#three,
-section#six {
-    /*    height: calc(50vh + var(--hex-side));*/
-    /*    height: calc(50vh);*/
-    width: 50%;
-    transform: skewY(30deg);
-    height: 100vh;
-}
-
-section#six {
-    /*
-    bottom: 0;
-    left: 0;
-*/
-    right: 50%;
-    top: calc(50vh + var(--hex-side));
-    transform-origin: top right;
-    opacity: 1;
-    /*    overflow: visible;*/
-    border: 1px solid black;
-}
-
-section#three h2,
-section#three::after,
-section#six h2,
-section#six::after {
-    transform: skewY(-30deg);
-}
-
-section#three h2 {
-    /*    margin: calc(50vh - var(--hex-side)) auto;*/
-    margin: auto;
-    /*    TODO: align this text to the bottom of the div */
-    /*    margin-bottom: var(--hex-side);*/
-    margin-bottom: 50px;
-    margin-left: var(--hex-side);
-}
-
 section#three::after {
-    background-size: cover;
-
-    transform-origin: bottom right;
-    /*    background-size: cover;*/
     background: var(--main) url("../assets/clouds-cloudy-cold-daylight.jpg") no-repeat;
 
     background: var(--main) url("../assets/1200px-Poland_Common_Forest_Hd_Wallpaper_(30152045).jpeg") no-repeat;
@@ -447,24 +534,12 @@ section#three::after {
 
     background: var(--main) url("../assets/forest-2033331_960_720.jpg") no-repeat;
 
+    background-size: cover;
     background-position: bottom center;
 
 }
 
-section#six h2 {
-    /*    margin: 90% auto auto auto;*/
-    /*    margin: auto;*/
-    /*    TODO: align this h2 to the right */
-    /*    margin-top: calc(var(--hex-side) * 1.75);*/
-    /*    margin-right: 20px;*/
-    margin: auto;
-    margin-top: 50px;
-    margin-right: var(--hex-side);
-}
-
 section#six::after {
-    bottom: 0;
-    right: 0;
     background: var(--main) url("../assets/tree-wood-woodland-forest.jpg");
 
     background: var(--main) url("../assets/Dark_Forest_2-1600.jpg") no-repeat;
@@ -472,21 +547,6 @@ section#six::after {
     background: var(--main) url("../assets/forest-mushrooms.jpg") no-repeat;
     background: var(--main) url("../assets/forest_woodland_drone_view_aerial_view_green-1410057.jpg!d.jpg") no-repeat;
 
-    /*    right: 0;*/
-    /*        bottom: 10%;*/
-
-    transform-origin: bottom left;
-
     background-position: center left;
     background-size: cover;
 }
-
-section h2 ~ * {
-    display: none;
-}
-
-
-/* transform origin
-background position if larger than it takes to cover box
-
-*/
