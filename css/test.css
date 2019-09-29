@@ -312,6 +312,46 @@ button.share {}
 /*hexagonal buttons*/
 button.add {}
 
+button.add,
+button.remove {
+    position: relative;
+}
+
+button.add i,
+button.remove i {
+    width: 12.5%;
+    height: 12.5%;
+
+    border-top: 1px solid var(--light);
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 44.75%;
+    overflow: visible;
+}
+
+button.remove i {
+    transform: rotate(45deg);
+}
+
+button.remove i::after,
+button.add i::after {
+    content: '';
+    display: block;
+    background: var(--light);
+
+    height: 1px;
+    width: 100%;
+
+    position: absolute;
+    top: -1px;
+    left: 0;
+
+    transform: rotate(90deg);
+    transform-origin: center center;
+}
+
+
 button.remove {}
 
 /*TODO: frosted */
